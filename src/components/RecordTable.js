@@ -39,7 +39,51 @@ class RecordTable extends Component {
         ];
     }
 
+    tableFiller(name, dob){
+        return(
+            <TableRow>
+                <TableCell>{name}</TableCell>
+                <TableCell>{dob}</TableCell>
+            </TableRow>
+        )
+    }
+
+    filterType(){
+        switch (this.props.filter){
+            case "name":
+                return "name";
+            case "age":
+                return "age";
+            default:
+                return "name";
+        }
+    }
+
     render() {
+      
+        let people = this.people;
+        let type = this.filterType();
+        if (type === "name"){
+            people = people.sort(function (a, b) {
+                if (a.name < b.name){
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+        } else if (type === "age"){
+            people = people.sort(function (a, b) {
+                return (
+                    parseInt(a.dob.split("").slice(6, 10).join("")) - 
+                    parseInt(b.dob.split("").slice(6, 10).join(""))
+                )
+            });
+        }
+        people = people.map(person => {
+            return this.tableFiller(person.name, person.dob);
+        })
+       
+        
         return (
             <Paper className="width">
                 <Table>
@@ -50,10 +94,7 @@ class RecordTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                                <TableRow>
-                                    <TableCell>Insert Name</TableCell>
-                                    <TableCell>Insert DOB</TableCell>
-                                </TableRow>
+                        {people}
                     </TableBody>
                 </Table>
             </Paper>
