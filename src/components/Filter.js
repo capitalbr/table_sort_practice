@@ -15,7 +15,9 @@ class Filter extends Component {
         this.setState({
             filter: type
         })
+      
     }
+
 
     filterSet(){
         switch (this.state.filter){
@@ -30,15 +32,26 @@ class Filter extends Component {
 
     render() {
         let filterType = this.filterSet();
+        let nameBox = "";
+        let ageBox = "";
+        if (filterType === "name"){
+            nameBox = true;
+            ageBox = false;
+        } else if (filterType === "age"){
+            nameBox = false;
+            ageBox = true;
+        }
         return (
         <div className="checkboxes">
             <div>
                 <Checkbox 
+                    checked={nameBox}
                     className="filter-by-name"
                     onChange={e => this.onChange(e, "name")}
                     />
                 <label>Name</label>
                 <Checkbox 
+                    checked={ageBox}
                     className="filter-by-age"
                     onChange={e => this.onChange(e, "age")}
                     />

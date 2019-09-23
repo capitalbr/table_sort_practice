@@ -59,6 +59,10 @@ class RecordTable extends Component {
         }
     }
 
+    componentDidMount(){
+       
+    }
+
     render() {
       
         let people = this.people;
