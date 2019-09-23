@@ -73,10 +73,18 @@ class RecordTable extends Component {
             });
         } else if (type === "age"){
             people = people.sort(function (a, b) {
-                return (
-                    parseInt(a.dob.split("").slice(6, 10).join("")) - 
-                    parseInt(b.dob.split("").slice(6, 10).join(""))
-                )
+                let aVal = parseInt(a.dob.split("").slice(6, 10).join(""))
+                let bVal = parseInt(b.dob.split("").slice(6, 10).join(""))
+                if (aVal === bVal) {
+                    return(
+                        parseInt(a.dob.split("").slice(0, 2).join("")) - 
+                        parseInt(b.dob.split("").slice(0, 2).join("")) 
+                    )
+                } else {
+                    return aVal - bVal;
+                }
+                    
+                
             });
         }
         people = people.map((person, idx) => {
