@@ -12,7 +12,6 @@ class Filter extends Component {
     }
 
     onChange(e, type){
-        e.preventDefault();
         this.setState({
             filter: type
         })
