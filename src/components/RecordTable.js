@@ -59,10 +59,6 @@ class RecordTable extends Component {
         }
     }
 
-    componentDidMount(){
-       
-    }
-
     render() {
       
         let people = this.people;
@@ -77,15 +73,21 @@ class RecordTable extends Component {
             });
         } else if (type === "age"){
             people = people.sort(function (a, b) {
-                let aVal = parseInt(a.dob.split("").slice(6, 10).join(""))
-                let bVal = parseInt(b.dob.split("").slice(6, 10).join(""))
-                if (aVal === bVal) {
-                    return(
-                        parseInt(a.dob.split("").slice(0, 2).join("")) - 
-                        parseInt(b.dob.split("").slice(0, 2).join("")) 
-                    )
+                let aYVal = parseInt(a.dob.split("").slice(6, 10).join(""));
+                let bYVal = parseInt(b.dob.split("").slice(6, 10).join(""));
+                if (aYVal === bYVal) {
+                    let aDVal = parseInt(a.dob.split("").slice(0, 2).join(""));
+                    let bDVal = parseInt(b.dob.split("").slice(0, 2).join("")); 
+                    if (aDVal === bDVal){
+                        return(
+                            parseInt(a.dob.split("").slice(3, 5).join("")) -
+                            parseInt(b.dob.split("").slice(3, 5).join(""))
+                        )
+                    } else {
+                        return aDVal - bDVal;
+                    }
                 } else {
-                    return aVal - bVal;
+                    return aYVal - bYVal;
                 }
                     
                 
