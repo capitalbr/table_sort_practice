@@ -39,9 +39,9 @@ class RecordTable extends Component {
         ];
     }
 
-    tableFiller(name, dob){
+    tableFiller(name, dob, idx){
         return(
-            <TableRow>
+            <TableRow key={`${name}-${idx}`}>
                 <TableCell>{name}</TableCell>
                 <TableCell>{dob}</TableCell>
             </TableRow>
@@ -79,8 +79,8 @@ class RecordTable extends Component {
                 )
             });
         }
-        people = people.map(person => {
-            return this.tableFiller(person.name, person.dob);
+        people = people.map((person, idx) => {
+            return this.tableFiller(person.name, person.dob, idx);
         })
        
         
