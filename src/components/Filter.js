@@ -11,7 +11,7 @@ class Filter extends Component {
         }
     }
 
-    handleClick(e, type){
+    handleChange(e, type){
         e.preventDefault();
         this.setState({
             filter: type
@@ -36,12 +36,12 @@ class Filter extends Component {
             <div>
                 <Checkbox 
                     className="filter-by-name"
-                    onClick={e => this.handleClick(e, "name")}
+                    onChange={e => this.handleChange(e, "name")}
                     />
                 <label>Name</label>
                 <Checkbox 
                     className="filter-by-age"
-                    onClick={e => this.handleClick(e, "age")}
+                    onChange={e => this.handleChange(e, "age")}
                     />
                 <label>Age</label>
                 </div>
